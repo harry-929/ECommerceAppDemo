@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +33,30 @@ public class CartController {
         return responseEntity;
     }
 
+    /* Below function loads the single cart from the list of carts*/
+    @GetMapping("/{id}")
+    public ResponseEntity<CartDTO> loadSingleCart(@PathVariable(name = "id") int id)
+            throws JsonProcessingException {
+        ResponseEntity<CartDTO> responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        CartDTO response = cartService.getSingleCart(id);
+
+        if (!response.isEmpty()) {
+            responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        return responseEntity;
+    }
+
+    /*Below function will load the List of carts for a specific user*/
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<CartDTO>> loadUserCart(@PathVariable(name = "id") int id)
+            throws JsonProcessingException{
+        ResponseEntity<List<CartDTO>> responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        List<CartDTO> response = cartService.getUserCart(id);
+
+        if(!CollectionUtils.isEmpty(response)){
+            responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        return responseEntity;
+    }
 }
 

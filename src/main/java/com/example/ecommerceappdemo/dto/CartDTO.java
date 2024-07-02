@@ -26,4 +26,8 @@ public class CartDTO {
     public CartDTO(int id, int userId){
 
     }
+
+    public boolean isEmpty(){
+        return products.isEmpty();
+    }
 }
