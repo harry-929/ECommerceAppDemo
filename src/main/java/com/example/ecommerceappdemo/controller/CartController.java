@@ -58,5 +58,16 @@ public class CartController {
         }
         return responseEntity;
     }
+
+    @PostMapping
+    public ResponseEntity<CartDTO>  addNewCart(@RequestBody CartDTO cart){
+        ResponseEntity<CartDTO> responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        CartDTO response = cartService.addNewCart(cart);
+
+        if (!response.isEmpty()) {
+            responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        return responseEntity;
+    }
 }
 

@@ -102,8 +102,9 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public List<CartDTO> addNewCart(CartDTO cart) {
-        return null;
+    public CartDTO addNewCart(CartDTO cart) {
+        CartDTO response = restTemplate.postForObject(GET_CART_API_ENDPOINT, cart, CartDTO.class);
+        return response;
     }
 
     @Override

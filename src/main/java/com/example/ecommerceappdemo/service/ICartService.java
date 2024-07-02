@@ -13,7 +13,7 @@ public interface ICartService {
     public CartDTO getSingleCart(int cId) throws JsonProcessingException;
     public List<CartDTO> getUserCart(int userId) throws JsonProcessingException;
     //add new cart in the list of the carts
-    public List<CartDTO> addNewCart(CartDTO cart);
+    public CartDTO addNewCart(CartDTO cart);
     //should update the cart for the specific user
     public CartDTO updateCart(int cId);
     //remove the cart
